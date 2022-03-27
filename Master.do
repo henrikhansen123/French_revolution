@@ -54,3 +54,7 @@ do overallTWFE_table.do
 
 * Creating a placebo test table for DID_M
 do common_trends.do
+
+
+* Linear trend for urbanization rate
+reg urbrate year
