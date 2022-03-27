@@ -9,6 +9,7 @@ set more off
 *version 10.0 /* I have commented this out to not make the regression stop at the 'replication with standard OLS' regressions.*/
 eststo clear
 
+* Insert path to data-set
 local path "C:\Files\School\8_Semester\Adv._Metrics\Exam\Data\112481-V1" /* insert local path here */
 
 cd "`path'"
@@ -23,7 +24,7 @@ sort year
 format urbrate %9.2f
 sort id year
 
-* Where to save output
+* Insert path to where you wanna save your output.
 cd "C:\Files\School\8_Semester\Adv._Metrics\Exam\Stata"
 
 * Generating binary treatment dummies

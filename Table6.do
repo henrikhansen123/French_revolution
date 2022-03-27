@@ -13,15 +13,15 @@ eststo: xi: xtivreg2 urbrate (yearsref= fpresenceXpostXtrend) yr1750-yr1900 [awe
 eststo: xi: xtivreg2 urbrate (yearsref= fpresenceXpostXtrend) yr1750-yr1900, fe robust i(id) cluster(id) first savefirst savefprefix(st2)
 
 * Intention-to-treat (est5) Weighted
-eststo: reg urbrate fpresenceXpostXtrend i.id yr1750-yr1900 [aweight=totalpop1750]
+eststo: reg urbrate fpresenceXpostXtrend i.id yr1750-yr1900 [aweight=totalpop1750], cluster(id)
 
 * Intetion-to-treat (est6) Unweighted
-eststo: reg urbrate fpresenceXpostXtrend i.id yr1750-yr1900
+eststo: reg urbrate fpresenceXpostXtrend i.id yr1750-yr1900, cluster(id)
 /***********************************************************************************
 ******************************* Table is build here ********************************
 ***********************************************************************************/
 * Panel A
-esttab est5 est1 est6 est2 using table_6.tex, se keep(f*) mtitles("TWFE" "DIDm" "TWFE" "DIDm") ///
+esttab est5 est1 est6 est2 using table_6.tex, title("" \label{Robust_table}) se keep(f*) mtitles("TWFE" "DIDm" "TWFE" "DIDm") ///
 rename(_bs_3 "fpresenceXpostXtrend") ///
 coeflabels(fpresenceXpostXtrend "ITT") ///
 noobs nogaps nonumbers ///

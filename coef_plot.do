@@ -14,13 +14,16 @@ eststo: quietly xtreg urbrate fpresence1750 fpresence1800 fpresence1850 fpresenc
 eststo: quietly xtreg urbrate fpresence1750 fpresence1800 fpresence1850 fpresence1875 fpresence1900 yr* [aweight=totalpop1750] if westelbe==1, fe i(id) cluster(id)
 */
 
-coefplot est1 est2, drop(_cons yr*) vertical yline(0.00, lp(dash)) ///
+coefplot est1 est2, drop(_cons yr*) vertical yline(0.00, lp(dash) lcolor(black)) ///
 coeflabels( fpresence1750 = "1750" fpresence1800 = "1800" ///
 			fpresence1850 = "1850" fpresence1875 = "1875" fpresence1900 = "1900") ///
-legend( label(2 "Weighted") ///
-		label(4 "Unweighted") ) ///
-		legend(ring(0) position(11)) ytitle("Estimated coefficients") ///
-		addplot(function y=0.004389004*50*(x)+0.004389004*1700-8.1685259, range(0.5 5.5) lp(dash)) 
+	legend( label(2 "Weighted") label(4 "Unweighted") ) ///
+	legend(ring(0) position(11)) ytitle("Estimated coefficients") ///
+	addplot((function y=0.004389004*50*(x)+0.004389004*1700-8.1685259 +6*0.004389004, ///
+		range(0.5 5.5) lp(dash) lcolor(blue)) ///
+			(function y=-0.3476091+0.003005306*50*(x) - 6*0.003005306, ///
+		range(0.5 5.5) lp(dash) lcolor(red))) 
+	
 
 
 graph export coefplot_reduced.png, replace
